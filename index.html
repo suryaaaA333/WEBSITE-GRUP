@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Circle</title>
+
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <style>
+        :root {
+            --primary-blue: #0d6efd;
+            --dark-navy: #0a192f;
+            --light-bg: #f8f9fa;
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+            background-color: var(--light-bg);
+            color: #333;
+            /* Extra padding top so fixed-top navbar doesn't cover Hero section */
+            padding-top: 70px;
+        }
+
+        /* Navbar Custom Styling (Fixed Top) */
+        .navbar {
+            background-color: rgba(10, 25, 47, 0.98) !important;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            margin: 0 5px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link.active {
+            color: #0d6efd !important;
+            border-bottom: 2px solid #0d6efd;
+        }
+
+        /* Hero Section Custom Styling */
+        .hero-section {
+            background: linear-gradient(135deg, #0a192f 0%, #1e3c72 100%);
+            color: white;
+            padding: 100px 0 100px;
+            clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
+        }
+
+        .hero-img {
+            width: 220px;
+            height: 220px;
+            object-fit: cover;
+            border: 6px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        /* Card Styling */
+        .custom-card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: white;
+            overflow: hidden;
+        }
+
+        .custom-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+
+        /* Jurusan Header Image Styling */
+        .jurusan-img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        /* Section Headings */
+        .section-title {
+            position: relative;
+            margin-bottom: 40px;
+            font-weight: 700;
+            color: var(--dark-navy);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary-blue);
+            border-radius: 2px;
+        }
+
+        /* Nav Pills Styling */
+        .nav-pills .nav-link {
+            color: var(--dark-navy);
+            background-color: #e9ecef;
+            border-radius: 30px;
+            padding: 10px 22px;
+            font-weight: 600;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-pills .nav-link.active {
+            background-color: var(--primary-blue);
+            color: white;
+            box-shadow: 0 5px 15px rgba(13, 110, 253, 0.3);
+        }
+
+        /* Progress Bar Styling */
+        .progress {
+            height: 12px;
+            border-radius: 10px;
+            background-color: #e9ecef;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg, #0d6efd, #0dcaf0);
+            border-radius: 10px;
+        }
+
+        /* Map Section */
+        .map-container {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: var(--dark-navy);
+            color: #a8b2d1;
+            padding-top: 60px;
+        }
+
+        footer h5 {
+            color: white;
+            font-weight: 600;
+        }
+
+        footer a {
+            color: #a8b2d1;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--primary-blue);
+        }
+
+        .footer-bottom {
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#mainNavbar" data-bs-offset="100" tabindex="0">
+
+    <!-- 1. HEADER / NAVBAR (FIXED-TOP) -->
+    <nav id="mainNavbar" class="navbar navbar-expand-lg navbar-dark fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#beranda">
+                <i class="bi bi-code-slash text-primary fs-3 me-2"></i>
+                <span>Besti Selamanya</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#beranda"><i class="bi bi-house-door me-1"></i> Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#tentang"><i class="bi bi-person me-1"></i> Tentang Grup</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#jurusan"><i class="bi bi-journal-bookmark me-1"></i> Informasi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#denah"><i class="bi bi-geo-alt me-1"></i> Denah</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#kontak"><i class="bi bi-envelope me-1"></i> Kontak</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 2. BERANDA (HERO SECTION) -->
+    <section id="beranda" class="hero-section text-center text-lg-start">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-4 text-center mb-4 mb-lg-0">
+                    <img src="Screenshot_20261019-015337.jpg" alt="Foto Profil Siswa" class="rounded-circle hero-img img-fluid" onerror="this.src='https://placehold.co/400x400/0a192f/ffffff?text=Foto+Siswa'">
+                </div>
+                <div class="col-lg-8">
+                    <span class="badge bg-primary px-3 py-2 rounded-pill fs-6 mb-3">
+                        <i class="bi bi-check-circle-fill me-1"></i> the four best people in the world
+                    </span>
+                    <h1 class="display-4 fw-bold mb-2">Welcom To Our Website</h1>
+                    <h3 class="h4 text-light opacity-75 mb-3">Story Sharing Group</h3>
+                    <p class="lead text-light opacity-75 mb-4">
+                        
+                    </p>
+                    <div class="d-flex flex-wrap justify-content-center justify-content-lg-start gap-3">
+                        <a href="#tentang" class="btn btn-primary btn-lg rounded-pill px-4 shadow">
+                            <i class="bi bi-person-badge me-2"></i>Lihat Profil
+                        </a>
+                        <a href="#kontak" class="btn btn-outline-light btn-lg rounded-pill px-4">
+                            <i class="bi bi-chat-dots me-2"></i>Hubungi Developer
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. TENTANG SAYA -->
+    <section id="tentang" class="py-5">
+        <div class="container py-4">
+            <h2 class="text-center section-title">About The Group</h2>
+            <div class="row g-4 mt-2">
+                <!-- Data Diri Card -->
+                <div class="col-lg-6">
+                    <div class="card custom-card h-100 p-4">
+                        <div class="card-body">
+                            <h4 class="card-title fw-bold text-primary mb-4">
+                                <i class="bi bi-card-heading me-2"></i>Data Group
+                            </h4>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent py-3">
+                                    <span class="fw-bold text-muted"><i class="bi bi-person me-2"></i>Jumlah Anggota:</span>
+                                    <span class="fw-semibold">4 Person</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent py-3">
+                                    <span class="fw-bold text-muted"><i class="bi bi-book me-2"></i>Kelas:</span>
+                                    <span class="fw-semibold">XII </span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent py-3">
+                                    <span class="fw-bold text-muted"><i class="bi bi-upc-scan me-2"></i>Status:</span>
+                                    <span class="fw-semibold">Pelajar</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent py-3">
+                                    <span class="fw-bold text-muted"><i class="bi bi-house-door me-2"></i>Tempat Kumpul:</span>
+                                    <span class="fw-semibold text-end">Jasdam</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Keahlian Card -->
+                <div class="col-lg-6">
+                    <div class="card custom-card h-100 p-4">
+                        <div class="card-body">
+                            <h4 class="card-title fw-bold text-primary mb-4">
+                                <i class="bi bi-tools me-2"></i>Bar Keahlian
+                            </h4>
+                            
+                            <!-- HTML / CSS -->
+                            <div class="mb-4">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span class="fw-semibold"><i class=""></i>GOSIP</span>
+                                    <span class="fw-bold text-primary">90%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+
+                            <!-- JavaScript -->
+                            <div class="mb-4">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span class="fw-semibold"><i class=""></i>CERITA</span>
+                                    <span class="fw-bold text-primary">75%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+
+                            <!-- PHP / MySQL -->
+                            <div class="mb-4">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span class="fw-semibold"><i class=""></i>Ngehujat Temen</span>
+                                    <span class="fw-bold text-primary">80%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+
+                            <!-- Git & GitHub -->
+                            <div class="mb-2">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span class="fw-semibold"><i class=""></i>Makek</span>
+                                    <span class="fw-bold text-primary">85%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. JURUSAN (NAV PILLS / TABS WITH IMAGES, MAPS & KONTAK) -->
+    <section id="jurusan" class="py-5 bg-white">
+        <div class="container py-4">
+            <h2 class="text-center section-title">Cerita Tentang Setiap Anggota</h2>
+            <p class="text-center text-muted mb-4">Pilih tab di bawah untuk melihat informasi, lokasi sekolah, serta kontak resmi.</p>
+
+            <!-- Nav Pills -->
+            <ul class="nav nav-pills justify-content-center mb-4" id="jurusanTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="rpl-tab" data-bs-toggle="pill" data-bs-target="#rpl" type="button" role="tab" aria-controls="rpl" aria-selected="true">Qania</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="dkv-tab" data-bs-toggle="pill" data-bs-target="#dkv" type="button" role="tab" aria-controls="dkv" aria-selected="false">Shinta</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="peksos-tab" data-bs-toggle="pill" data-bs-target="#peksos" type="button" role="tab" aria-controls="peksos" aria-selected="false">Syauqi</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="animasi-tab" data-bs-toggle="pill" data-bs-target="#animasi" type="button" role="tab" aria-controls="animasi" aria-selected="false">Surya</button>
+                </li>
+            </ul>
+
+            <!-- Tab Contents -->
+            <div class="tab-content" id="jurusanTabContent">
+                
+                <!-- 1. RPL Tab -->
+                <div class="tab-pane fade show active" id="rpl" role="tabpanel" aria-labelledby="rpl-tab">
+                    <div class="card custom-card border-start border-primary border-4">
+                        <img src="Screenshot_20261019-015215.jpg" alt="qania" class="jurusan-img" onerror="this.src='https://placehold.co/1200x400/0d6efd/ffffff?text=Gambar+RPL'">
+                        <div class="card-body p-4">
+                            <h3 class="card-title text-primary fw-bold mb-3">Qaniaaaaaaa</h3>
+                            <h5 class="fw-bold mt-3">DESKRIPSI:</h5>
+                            <p class="text-muted"> Ini nia, dia ini orangnya lumayan cantik lahhh, nah dia ini yang type nya kayak rada pemarah,ngeselin,dan gampang badmood. but, I remember how she always supported me when I was sad.</p>
+                            <h5 class="fw-bold mt-3">list yang nia suka:</h5>
+                            <ul class="text-muted">
+                                <li>tsukunaaa.</li>
+                                <li>pacaran.</li>
+                                <li>tidur wkwkwkwkwk.</li>
+                            </ul>
+
+                            <hr class="my-4">
+
+                            <!-- Maps Jurusan RPL -->
+                            <h5 class="fw-bold text-primary mb-3"><i class="bi bi-geo-alt-fill me-2"></i>Denah / Peta Lokasi sekolah nia</h5>
+                            <div class="row g-3 align-items-center mb-4">
+                                <div class="col-lg-8">
+                                    <div class="map-container ratio ratio-21x9">
+                                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3981.919072263004!2d98.63795089999999!3d3.6059991999999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30312e6ca83799d5%3A0x6bf3f11c546908ed!2sLAPANGAN%20JASDAM%20I%2FBB!5e0!3m2!1sid!2sid!4v1791644872599!5m2!1sid!2sid" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="p-3 bg-light rounded-3">
+                                        <p class="fw-bold mb-1"><i class="bi bi-pin-map text-primary me-2"></i>Lokasi:</p>
+                                        <a href="https://maps.google.com" target="_blank" class="btn btn-sm btn-outline-primary rounded-pill w-100">Buka Peta Petunjuk</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Hubungi Jurusan RPL -->
+                            <div class="p-3 bg-light rounded-3 border">
+                                <h6 class="fw-bold text-primary mb-3"><i class="bi bi-chat-square-dots me-2"></i>Hubungi qania:</h6>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <a href="https://wa.me/6282276493927?text=Halo%20Admin%20Jurusan%20RPL" target="_blank" class="btn btn-sm btn-success rounded-pill px-3">
+                                        <i class="bi bi-whatsapp me-1"></i> WhatsApp Qania
+                                    </a>
+                                    <a href="https://instagram.com/_qqaniaaa" target="_blank" class="btn btn-sm btn-primary rounded-pill px-3" style="background-color: #e1306c; border-color: #e1306c;">
+                                        <i class="bi bi-instagram me-1"></i> Instagram Qania
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. DKV Tab -->
+                <div class="tab-pane fade" id="dkv" role="tabpanel" aria-labelledby="dkv-tab">
+                    <div class="card custom-card border-start border-warning border-4">
+                        <img src="Screenshot_20261019-014850.jpg" alt="shinta" class="jurusan-img" onerror="this.src='https://placehold.co/1200x400/ffc107/ffffff?text=Gambar+DKV'">
+                        <div class="card-body p-4">
+                            <h3 class="card-title text-warning fw-bold mb-3">sshintaaaaaa</h3>
+                            <h5 class="fw-bold mt-3">DESKRIPSI:</h5>
+                            <p class="text-muted">Ini shinta, dia ini orangnya strong banget jier keliatannya, dia aktif banget juga contohnya kayak dia tau banget cok tentang olahraga begitu apalagi soal bola dan voli, awalnya aku sama shinta gak terlalu deket sampe di suatu saat dia kasih aku suatu saran,pelajaran dan motivasi yang ngebuat aku bener bener buka mata tentang realita dunia, and... i love shinta.</p>
+                            <h5 class="fw-bold mt-3">list yang shinta suka:</h5>
+                            <ul class="text-muted">
+                                <li>voli.</li>
+                                <li>jaehyun.</li>
+                                <li>bolaaa.</li>
+                            </ul>
+
+                            <hr class="my-4">
+
+                            <!-- Maps Jurusan DKV -->
+                            <h5 class="fw-bold text-warning mb-3"><i class="bi bi-geo-alt-fill me-2"></i>Denah / Peta Lokasi sekolah shinta</h5>
+                            <div class="row g-3 align-items-center mb-4">
+                                <div class="col-lg-8">
+                                    <div class="map-container ratio ratio-21x9">
+                                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3981.919072263004!2d98.63795089999999!3d3.6059991999999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30312e6ca83799d5%3A0x6bf3f11c546908ed!2sLAPANGAN%20JASDAM%20I%2FBB!5e0!3m2!1sid!2sid!4v1791644872599!5m2!1sid!2sid" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="p-3 bg-light rounded-3">
+                                        <p class="fw-bold mb-1"><i class="bi bi-pin-map text-warning me-2"></i>Lokasi sekolah:</p>
+                                        <a href="https://maps.google.com" target="_blank" class="btn btn-sm btn-outline-warning rounded-pill w-100">Buka Peta Petunjuk</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Hubungi Jurusan DKV -->
+                            <div class="p-3 bg-light rounded-3 border">
+                                <h6 class="fw-bold text-warning mb-3"><i class="bi bi-chat-square-dots me-2"></i>Hubungi shinta:</h6>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <a href="https://wa.me/6283163766080?text=Halo%20Admin%20Jurusan%20DKV" target="_blank" class="btn btn-sm btn-success rounded-pill px-3">
+                                        <i class="bi bi-whatsapp me-1"></i> WhatsApp shinta
+                                    </a>
+                                    <a href="https://instagram.com/sshintaaa4_" target="_blank" class="btn btn-sm btn-primary rounded-pill px-3" style="background-color: #e1306c; border-color: #e1306c;">
+                                        <i class="bi bi-instagram me-1"></i> Instagram shinta
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. PEKSOS Tab -->
+                <div class="tab-pane fade" id="peksos" role="tabpanel" aria-labelledby="peksos-tab">
+                    <div class="card custom-card border-start border-success border-4">
+                        <img src="Screenshot_20261019-015435.jpg" alt="Jurusan Pekerjaan Sosial" class="jurusan-img" onerror="this.src='https://placehold.co/1200x400/198754/ffffff?text=Gambar+PEKSOS'">
+                        <div class="card-body p-4">
+                            <h3 class="card-title text-success fw-bold mb-3"><i class=""></i>syauqi</h3>
+                            <h5 class="fw-bold mt-3">DESKRIPSI:</h5>
+                            <p class="text-muted">ini syauqi, di grup pertama kali aku kenalnya sama dia lohhhh, awalnya dari game sampe ke sering ngobrol dan banyak lagi keseruan kami. dia ini orangnya kadang keras kepala,kadang degel, tetapi di grup dia bisa aja jadi yang paling dewasa dan syauqi adalah temen ku yang pertama kali dengerin curhatanku.</p>
+                            <h5 class="fw-bold mt-3">list yang syauqi suka:</h5>
+                            <ul class="text-muted">
+                                <li>jadi bucin.</li>
+                                <li>kereta.</li>
+                                <li>Main ngep ngep.</li>
+                            </ul>
+
+                            <hr class="my-4">
+
+                            <!-- Maps Jurusan PEKSOS -->
+                            <h5 class="fw-bold text-success mb-3"><i class="bi bi-geo-alt-fill me-2"></i>Denah / lokasi sekolah syauqi</h5>
+                            <div class="row g-3 align-items-center mb-4">
+                                <div class="col-lg-8">
+                                    <div class="map-container ratio ratio-21x9">
+                                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3981.9144557983345!2d98.6233147!3d3.6070531000000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30312e643922b4f3%3A0x4bef6848d687451!2sSekolah%20Menengah%20Atas%20Rahmat%20Islamiyah%20Medan!5e0!3m2!1sid!2sid!4v1791647451111!5m2!1sid!2sid" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="p-3 bg-light rounded-3">
+                                        <p class="fw-bold mb-1"><i class="bi bi-pin-map text-success me-2"></i>Lokasi sekolah:</p>
+                                        <a href="https://maps.google.com" target="_blank" class="btn btn-sm btn-outline-success rounded-pill w-100">Buka Peta Petunjuk</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Hubungi Jurusan PEKSOS -->
+                            <div class="p-3 bg-light rounded-3 border">
+                                <h6 class="fw-bold text-success mb-3"><i class="bi bi-chat-square-dots me-2"></i>Hubungi syauqi:</h6>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <a href="https://wa.me/6285252892528?text=Halo%20Admin%20Jurusan%20PEKSOS" target="_blank" class="btn btn-sm btn-success rounded-pill px-3">
+                                        <i class="bi bi-whatsapp me-1"></i> WhatsApp syauqi
+                                    </a>
+                                    <a href="https://instagram.com/qii_bandhawaa" target="_blank" class="btn btn-sm btn-primary rounded-pill px-3" style="background-color: #e1306c; border-color: #e1306c;">
+                                        <i class="bi bi-instagram me-1"></i> Instagram syauqi
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. ANIMASI Tab -->
+                <div class="tab-pane fade" id="animasi" role="tabpanel" aria-labelledby="animasi-tab">
+                    <div class="card custom-card border-start border-info border-4">
+                        <img src="Screenshot_20261019-015622.jpg" alt="surya" class="jurusan-img" onerror="this.src='https://placehold.co/1200x400/0dcaf0/ffffff?text=Gambar+ANIMASI'">
+                        <div class="card-body p-4">
+                            <h3 class="card-title text-info fw-bold mb-3"><i class=""></i>Surya</h3>
+                            <h5 class="fw-bold mt-3">DESKRIPSI:</h5>
+                            <p class="text-muted">halo... saya surya, gak banyak hal tentang saya.but, saya orangnya gak terlalu baik tapi saya baik mwehehehe tankyou.</p>
+                            <h5 class="fw-bold mt-3">list yang surya suka:</h5>
+                            <ul class="text-muted">
+                                <li>main bola.</li>
+                                <li>main game.</li>
+                                <li>billie eilish.</li>
+                            </ul>
+
+                            <hr class="my-4">
+
+                            <!-- Maps Jurusan ANIMASI -->
+                            <h5 class="fw-bold text-info mb-3"><i class="bi bi-geo-alt-fill me-2"></i>Denah / Peta Lokasi sekolah </h5>
+                            <div class="row g-3 align-items-center mb-4">
+                                <div class="col-lg-8">
+                                    <div class="map-container ratio ratio-21x9">
+                                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3981.991622072025!2d98.6213798!3d3.5893961!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30312e4f46b5ab19%3A0x447dc6ab3d465c1e!2sSekolah%20Menengah%20Kejuruan%20Negeri%209%20Medan!5e0!3m2!1sid!2sid!4v1791648356603!5m2!1sid!2sid" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="p-3 bg-light rounded-3">
+                                        <p class="fw-bold mb-1"><i class="bi bi-pin-map text-info me-2"></i>Lokasi sekolah:</p>
+                                        <a href="https://maps.google.com" target="_blank" class="btn btn-sm btn-outline-info rounded-pill w-100">Buka Peta Petunjuk</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Hubungi Jurusan Animasi -->
+                            <div class="p-3 bg-light rounded-3 border">
+                                <h6 class="fw-bold text-info mb-3"><i class="bi bi-chat-square-dots me-2"></i>Hubungi surya:</h6>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <a href="https://wa.me/628566277828?text=Halo%20surya" target="_blank" class="btn btn-sm btn-success rounded-pill px-3">
+                                        <i class="bi bi-whatsapp me-1"></i> WhatsApp surya
+                                    </a>
+                                    <a href="https://instagram.com/xuziiiloure" target="_blank" class="btn btn-sm btn-primary rounded-pill px-3" style="background-color: #e1306c; border-color: #e1306c;">
+                                        <i class="bi bi-instagram me-1"></i> Instagram surya
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. DENAH RUMAH KE SEKOLAH -->
+    <section id="denah" class="py-5">
+        <div class="container py-4">
+            <h2 class="text-center section-title">TEMPAT KUMPUL</h2>
+            
+            <div class="row g-4 align-items-center">
+                <div class="col-lg-8">
+                    <!-- Responsive Ratio 16x9 Container -->
+                    <div class="map-container ratio ratio-16x9">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3981.919072263004!2d98.63795089999999!3d3.6059991999999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30312e6ca83799d5%3A0x6bf3f11c546908ed!2sLAPANGAN%20JASDAM%20I%2FBB!5e0!3m2!1sid!2sid!4v1791644872599!5m2!1sid!2sid" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="card custom-card p-4">
+                        <h4 class="fw-bold text-primary mb-3"><i class="bi bi-map me-2"></i>Informasi Rute</h4>
+                        
+                        <div class="mb-4">
+                            <label class="fw-bold text-muted d-block"><i class="bi bi-building text-primary me-1"></i> Lokasi:</label>
+                            <p class="mb-0 fw-semibold">Kantin jasdam</p>
+                        </div>
+
+                        <!-- Direct Route Button -->
+                        <a href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3981.919072263004!2d98.63795089999999!3d3.6059991999999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30312e6ca83799d5%3A0x6bf3f11c546908ed!2sLAPANGAN%20JASDAM%20I%2FBB!5e0!3m2!1sid!2sid!4v1791644872599!5m2!1sid!2sid" 
+                           target="_blank" 
+                           class="btn btn-primary btn-lg w-100 rounded-pill shadow">
+                            <i class="bi bi-sign-turn-right me-2"></i>Petunjuk Rute / Directions
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. KONTAK -->
+    <section id="kontak" class="py-5 bg-white">
+        <div class="container py-4">
+            <h2 class="text-center section-title">Hubungi developer</h2>
+            
+            <div class="row g-4 mt-2 justify-content-center">
+                <div class="col-md-4 text-center">
+                    <div class="card custom-card p-4 h-100">
+                        <div class="card-body">
+                            <i class="bi bi-envelope-at text-primary fs-1 mb-3 d-block"></i>
+                            <h5 class="fw-bold">Email</h5>
+                            <p class="text-muted">szesnygrandprix@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 text-center">
+                    <div class="card custom-card p-4 h-100">
+                        <div class="card-body">
+                            <i class="bi bi-whatsapp text-success fs-1 mb-3 d-block"></i>
+                            <h5 class="fw-bold">WhatsApp</h5>
+                            <p class="text-muted">+62 856-6277-828</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 text-center">
+                    <div class="card custom-card p-4 h-100">
+                        <div class="card-body">
+                            <i class="bi bi-github text-dark fs-1 mb-3 d-block"></i>
+                            <h5 class="fw-bold">GitHub</h5>
+                            <p class="text-muted">github.com/SuryaA333</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-5">
+                    <h5 class="d-flex align-items-center mb-3">
+                        <i class="bi bi-code-slash text-primary me-2"></i> Website bersama
+                    </h5>
+                    <p>Website portofolio dan profil resmi. Dibuat menggunakan HTML, CSS, dan Bootstrap 5 responsif untuk kebutuhan dipublikasikan di GitHub Pages.</p>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="mb-3">Menu Cepat</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#beranda"><i class="bi bi-chevron-right me-1"></i> Beranda</a></li>
+                        <li class="mb-2"><a href="#tentang"><i class="bi bi-chevron-right me-1"></i> Tentang Grup</a></li>
+                        <li class="mb-2"><a href="#jurusan"><i class="bi bi-chevron-right me-1"></i> Informasi</a></li>
+                        <li class="mb-2"><a href="#denah"><i class="bi bi-chevron-right me-1"></i> Denah Rute</a></li>
+                        <li class="mb-2"><a href="#kontak"><i class="bi bi-chevron-right me-1"></i> Kontak</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="mb-3">Informasi grup</h5>
+                    <p class="mb-1"><i class=""></i> No baperan</p>
+                    <p class="mb-1"><i class=""></i> wajib bisa ngeroasting</p>
+                    <p class="mb-1"><i class=""></i> surya ganteng</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom text-center">
+            <div class="container">
+                <p class="mb-0">&copy; 2026 Surya widjaya - Suka Billie. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 Bundle JS (termasuk Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
